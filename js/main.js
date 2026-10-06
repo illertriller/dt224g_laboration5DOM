@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Laboration 5 - Studentkortsgenerator
- * Namn: DITT NAMN
+ * Namn: Martin Sohlberg
  */
 
 // Hämta element från DOM
@@ -34,10 +34,20 @@ let history = [];
  */
 function validateForm() {
     // Kontrollera formulärets obligatoriska fält
-
+    if (fullnameInput.ariaValueMax.trim() === "") {
+        errors.push("Du måste fylla i ditt namn.");
+    }
+    if (emailInput.value.trim() === ""){
+        errors.push("Du måtse fylla i din email-adress.");
+    }
+    if (phoneInput.value.trim( === "")) {
+        errors.push("Du måste fylla i ditt telefonnummer.");
+    }
     // Visa eventuella felmeddelanden
+    displayErrors();
 
     // Returnera resultatet (true eller false) av valideringen
+    return errors.length === 0;
 }
 
 
