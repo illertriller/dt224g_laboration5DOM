@@ -33,7 +33,7 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
-    errors = []
+    errors = [];
     // Kontrollera formulärets obligatoriska fält
     if (fullnameInput.value.trim() === "") {
         errors.push("Du måste fylla i ditt namn.");
@@ -127,6 +127,10 @@ function deleteHistory() {
 // Eventlyssnare
 
 // När formuläret skickas:
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log(validateForm());
+});
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
 
