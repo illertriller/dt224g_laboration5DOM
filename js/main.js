@@ -33,14 +33,15 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
+    errors = []
     // Kontrollera formulärets obligatoriska fält
-    if (fullnameInput.ariaValueMax.trim() === "") {
+    if (fullnameInput.value.trim() === "") {
         errors.push("Du måste fylla i ditt namn.");
     }
     if (emailInput.value.trim() === ""){
-        errors.push("Du måtse fylla i din email-adress.");
+        errors.push("Du måste fylla i din email-adress.");
     }
-    if (phoneInput.value.trim( === "")) {
+    if (phoneInput.value.trim() === "") {
         errors.push("Du måste fylla i ditt telefonnummer.");
     }
     // Visa eventuella felmeddelanden
