@@ -79,10 +79,11 @@ function createStudentCard() {
     const font = fontSelect.value;
 
     // Uppdatera studentkortet
-    previewFullname.textContent = name;
-    previewEmail.textContent = email;
-    previewPhone.textContent = phone;
-    document.querySelector("#preview .card").style.fontFamily = font;
+    previewFullname.style.fontFamily = font;
+    previewEmail.style.fontFamily = font;
+    previewPhone.style.fontFamily = font;
+    
+    // document.querySelector("#preview .card").style.fontFamily = font;
 
     // Lägg till studentkortet i historiken
     history.unshift({ name: name, email: email, phone: phone, font: font });
@@ -127,6 +128,9 @@ function renderHistory() {
     for (let i = 0; i < history.length; i++) {
        const item = document.createElement("div");
        item.style.fontFamily = history[i].font;
+       item.style.borderBottom = "1px solid #ccc";
+       item.style.paddingBottom = "10px";
+       item.style.marginBottom = "10px";
        const name = document.createElement("p");
        name.textContent = history[i].name;
        const email = document.createElement("p");
@@ -147,9 +151,9 @@ function renderHistory() {
 function clearForm() {
     // Återställ formulär och studentkort
     form.reset();
-    previewFullname.textContent = "Namn";
-    previewEmail.textContent = "E-post";
-    previewPhone.textContent = "Telefon";
+    previewFullname.style.fontFamily = "";
+    previewEmail.style.fontFamily = "";
+    previewPhone.style.fontFamily = "";
 
     // Rensa eventuella felmeddelanden
     errors = [];
