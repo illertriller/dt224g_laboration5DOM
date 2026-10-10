@@ -85,8 +85,11 @@ function createStudentCard() {
     document.querySelector("#preview .card").style.fontFamily = font;
 
     // Lägg till studentkortet i historiken
+    history.unshift({ name: name, email: email, phone: phone, font: font });
 
     // Spara och uppdatera historiken
+    saveHistory();
+    renderHistory();
 }
 
 
@@ -95,6 +98,7 @@ function createStudentCard() {
  */
 function saveHistory() {
     // Spara history i localStorage
+    localStorage.setItem("history", JSON.stringify(history));
 }
 
 
@@ -103,6 +107,10 @@ function saveHistory() {
  */
 function loadHistory() {
     // Hämta eventuell sparad historik
+    const saved = localStorage.getItem("history");
+    if (saved) {
+        history = JSON.parse(saved);
+    }
 
     // Uppdatera history
 }
@@ -113,8 +121,23 @@ function loadHistory() {
  */
 function renderHistory() {
     // Rensa tidigare visad historik
+    historySection.innerHTML = "";
 
     // Skriv ut innehållet i history till DOM
+    for (let i = 0; i < history.length; i++) {
+       const item = document.createElement("div");
+       item.style.fontFamily = history[i].font;
+       const name = document.createElement("p");
+       name.textContent = history[i].name;
+       const email = document.createElement("p");
+       email.textContent = history[i].email;
+       const phone = document.createElement("p");
+       phone.textContent = history[i].phone;
+       item.appendChild(name);
+       item.appendChild(email);
+       item.appendChild(phone);
+       historySection.appendChild(item);
+    }
 }
 
 
@@ -158,4 +181,8 @@ form.addEventListener("submit", function (event) {
 
 
 // När sidan laddas:
-// - läs in och visa eventuell tidigare historik
+window.addEventListener("load", function () {
+    // - läs in och visa eventuell tidigare historik
+    loadHistory();
+    renderHistory();
+});
