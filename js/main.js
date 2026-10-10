@@ -82,7 +82,7 @@ function createStudentCard() {
     previewFullname.textContent = name;
     previewEmail.textContent = email;
     previewPhone.textContent = phone;
-    document.querySelector("#preview .card").computedStyleMap.fontFamily = font;
+    document.querySelector("#preview .card").style.fontFamily = font;
 
     // Lägg till studentkortet i historiken
 
