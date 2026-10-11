@@ -79,10 +79,15 @@ function createStudentCard() {
     const font = fontSelect.value;
 
     // Uppdatera studentkortet
+    previewFullname.textContent = name;
+    previewEmail.textContent = email;
+    previewPhone.textContent = phone;
     previewFullname.style.fontFamily = font;
     previewEmail.style.fontFamily = font;
     previewPhone.style.fontFamily = font;
     
+    // Ville ha att enbart texten skulle ändra typsnitt och att titeln på studentkorten är kvar i
+    // orginal typsnittet. Lagt koden som ändrar hela kortet som kommentar här nedanför:
     // document.querySelector("#preview .card").style.fontFamily = font;
 
     // Lägg till studentkortet i historiken
@@ -178,13 +183,13 @@ function deleteHistory() {
 // När formuläret skickas:
 form.addEventListener("submit", function (event) {
     event.preventDefault();
+
+    // - validera inmatningen
     if (validateForm()) {
+        // - skapa studentkort om valideringen lyckas
         createStudentCard();
     }
 });
-// - validera inmatningen
-// - skapa studentkort om valideringen lyckas
-
 
 // När användaren klickar på "Rensa"
 clearButton.addEventListener("click", clearForm);
